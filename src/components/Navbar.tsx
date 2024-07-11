@@ -2,6 +2,8 @@
 
 import React from 'react'
 import Link from 'next/link'
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import { IconButton } from '@mui/material';
 
 const style={
   textcolor:`hover:border-b-2 hover:border-ascent`
@@ -9,7 +11,7 @@ const style={
 
 const Navbar:React.FC = () => {
   return (
-    <nav className='bg-transparent md:h-20 h-14 p-2 flx-row justify-between text-background'>
+    <nav className=' md:h-20 h-14 p-2 flx-row justify-between bg-background'>
         <div className='font-aton md:text-3xl text-xl tracking-wider '>
           <Link href="/">CrimeWatch</Link>
         </div>
