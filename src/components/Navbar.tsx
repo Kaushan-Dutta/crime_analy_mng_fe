@@ -11,7 +11,7 @@ const style={
 
 const Navbar:React.FC = () => {
   return (
-    <nav className=' md:h-20 h-14 p-2 flx-row justify-between bg-background'>
+    <nav className=' md:h-20 h-14 py-2 px-7 flx-row justify-between bg-background1 text-background'>
         <div className='font-aton md:text-3xl text-xl tracking-wider '>
           <Link href="/">CrimeWatch</Link>
         </div>
