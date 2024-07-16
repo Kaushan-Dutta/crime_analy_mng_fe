@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React,{memo} from "react";
 import Link from "next/link";
 import TurnLeftIcon from "@mui/icons-material/TurnLeft";
 import { Button, IconButton } from "@mui/material";
@@ -10,7 +10,7 @@ import { SideBarLinks } from "@/config/routes";
 
 import { useAuth } from "@/context/AuthContext";
 
-const Sidebar = React.memo(() => {
+const Sidebar = memo(() => {
   const { account } = useAuth();
 
   if (!account) {
