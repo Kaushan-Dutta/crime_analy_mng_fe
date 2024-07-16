@@ -8,6 +8,9 @@
 .container-large{
     @apply md:px-[12rem] px-[1rem] py-[1rem] md:text-base text-sm
 }
+.container-medium{
+    @apply md:px-[7rem] px-[1rem] py-[1rem] md:text-base text-sm
+}
 .container-small{
     @apply md:px-[2rem] px-[1rem]  md:text-base text-sm
 }

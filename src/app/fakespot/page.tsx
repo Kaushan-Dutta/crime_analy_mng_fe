@@ -1,7 +1,24 @@
+import {Button,TextField} from "@mui/material";
+
 export default function FakeSpot() {
     return(
-        <div className="flex flex-col items-center justify-center h-screen">
-            <h1 className="text-4xl font-bold">FakeSpot</h1>
+        <div className=" container-medium flex flex-col gap-5">
+            <TextField
+                label="Enter email"
+                variant="outlined"
+                size="medium"
+                sx={{ width: "100%" }}
+            />
+           
+            <Button
+                variant="contained"
+                color="success"
+                
+                size="large"
+                className="tracking-widest w-1/3 "
+            >
+                DETECT
+            </Button>
         </div>
     )
 }
