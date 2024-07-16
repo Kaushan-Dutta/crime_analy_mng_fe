@@ -4,17 +4,19 @@ import React from "react";
 import Link from "next/link";
 import TurnLeftIcon from "@mui/icons-material/TurnLeft";
 import { Button, IconButton } from "@mui/material";
-
-import HomeIcon from "@mui/icons-material/Home";
-import CasesIcon from "@mui/icons-material/Cases";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import SafetyCheckIcon from "@mui/icons-material/SafetyCheck";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-import PolicyIcon from "@mui/icons-material/Policy";
-import EventIcon from "@mui/icons-material/Event";
 
-const Sidebar = () => {
+import { SideBarLinks } from "@/config/routes";
+
+import { useAuth } from "@/context/AuthContext";
+
+const Sidebar = React.memo(() => {
+  const { account } = useAuth();
+
+  if (!account) {
+    return null;
+  }
+  
   return (
     <div className="pt-5 pb-10 px-5 flex flex-col gap-3  h-full bg-background1">
       <div className="block md:hidden flx-row justify-end ">
@@ -23,42 +25,19 @@ const Sidebar = () => {
         </button>
       </div>
       <div className="flex-1 flex flex-col gap-5">
-        <Button className="w-full flx-row justify-start h-10 gap-2 text-background">
-          <HomeIcon className="text-xl text-ascent" />
-          Home
-        </Button>
-        <Button className="w-full flx-row justify-start h-10 gap-2 text-background">
-          <SafetyCheckIcon className="text-xl text-ascent" />
-          Alerts
-        </Button>
-        <Button className="w-full flx-row justify-start h-10 gap-2 text-background">
-          <SettingsApplicationsIcon className="text-xl text-ascent" />
-          Applications
-        </Button>
-        <Button className="w-full flx-row justify-start h-10 gap-2 text-background">
-          <EventIcon className="text-xl text-ascent" />
-          Events
-        </Button>
-        <Button className="w-full flx-row justify-start h-10 gap-2 text-background">
-          <PolicyIcon className="text-xl text-ascent" />
-          Search Case
-        </Button>
-        {/* <Button
-          className="w-full flx-row justify-start h-10 gap-2 text-background"
-        >
-          <NotificationsIcon className="text-xl text-ascent"  />
-          Notifications
-        </Button>
-        <Button
-          className="w-full flx-row justify-start h-10 gap-2 text-background"
-        >
-          <NotificationsIcon className="text-xl text-ascent"  />
-          Notifications
-        </Button> */}
-        <Button className="w-full flx-row justify-start h-10 gap-2 text-background">
-          <NotificationsIcon className="text-xl text-ascent" />
-          Notifications
-        </Button>
+        {SideBarLinks.filter((link) => link.role.includes(account.role)).map(
+          (link, id) => (
+            <Link href={`/${account.role}/dashboard/${link.link}`} passHref  key={id}>
+              <Button
+               
+                className="w-full flx-row justify-start h-10 gap-2 text-background"
+              >
+                {link.icon}
+                {link.title}
+              </Button>
+            </Link>
+          )
+        )}
       </div>
       <div className="flex flex-col ">
         <Button variant="contained" color="error" className="w-full h-10">
@@ -67,6 +46,6 @@ const Sidebar = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Sidebar;

@@ -1,7 +1,11 @@
-export default function Notification() {
-    return(
-        <div className="flex flex-col items-center justify-center h-screen">
-            <h1 className="text-4xl font-bold">Admin  Notification</h1>
-        </div>
-    )
+import Searchbar from "@/components/Searchbar";
+import Filter from "@/components/Filter";
+import Notification from "@/components/sections/Notification";
+
+export default function Admin() {
+  return (
+    <div className="flex-col gap-10 flex">
+      <Notification />
+    </div>
+  );
 }

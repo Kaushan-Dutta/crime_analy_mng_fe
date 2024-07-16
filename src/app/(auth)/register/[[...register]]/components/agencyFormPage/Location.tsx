@@ -25,6 +25,7 @@ const Location:React.FC = () => {
               if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                   console.log("longitude",position)
+                  setLocation(position.coords.latitude + " " + position.coords.longitude);
                 });
               } else {
                 console.log("Geolocation is not available in your browser.");
@@ -42,3 +43,18 @@ const Location:React.FC = () => {
 }
 
 export default Location
+// navigator.geolocation.getCurrentPosition(
+//   (position) => {
+//       console.log(
+//           'You are ',
+//           geolib.getDistance(position.coords, {
+//               latitude: 51.525,
+//               longitude: 7.4575,
+//           }),
+//           'meters away from 51.525, 7.4575'
+//       );
+//   },
+//   () => {
+//       alert('Position could not be determined.');
+//   }
+// );

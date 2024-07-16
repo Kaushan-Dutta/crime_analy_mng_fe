@@ -9,9 +9,9 @@ export default function Admin() {
         <Searchbar />
       </div>
       <div className="flx-row ">
-        <Filter />
+        <Filter props={["By Date", "By Status"]} />
       </div>
-      <h1 className="text-4xl font-bold"><Application/></h1>
+      <Application />
     </div>
   );
 }

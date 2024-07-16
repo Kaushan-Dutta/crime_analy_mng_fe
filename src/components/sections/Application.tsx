@@ -10,8 +10,8 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 const Application = () => {
   return (
-    <div className="text-[17px] text-gray-800 flex-col flex gap-3">
-      {/* <div className='flx-row justify-around  rounded-md text-md px-5 py-3 leading-5 bg-white'>
+    <div className="text-[17px]  flex-col flex gap-3 font-normal">
+      <div className='flx-row justify-around  rounded-md text-md px-5 py-3 leading-5 bg-white'>
             <p className='w-1/5'>Mahestala Station</p>
             <p className='w-1/5'>Newton Mela Ground Nrkelbazar</p>
             <Link href="/" className='w-1/5 flx-row gap-2'><span><RemoveRedEyeIcon className='text-ascent'/></span>View</Link>
@@ -42,7 +42,7 @@ const Application = () => {
             <Link href="/" className='w-1/5 flx-row gap-2'><span><RemoveRedEyeIcon className='text-ascent'/></span>View</Link>
             <p className='flx-row gap-2 w-1/5'><span><FiberManualRecordIcon className='text-green-500 text-sm'/></span>Pending</p>
             <IconButton size="large"  color="primary" aria-label="edit icon"><EditNoteIcon className='text-ascent'/></IconButton>
-        </div> */}
+        </div>
       {/* <div className="flx-row justify-around  rounded-md text-md px-5 py-3 leading-5 bg-white">
         <p className="">
           Your case {"<"} Case Name {">"} have been accepted by {"<"}Police
@@ -128,7 +128,7 @@ const Application = () => {
           Send Req
         </Button>
       </div> */}
-      <div className="flx-row justify-around  rounded-md text-md px-5 py-3 leading-5 bg-white">
+      {/* <div className="flx-row justify-around  rounded-md text-md px-5 py-3 leading-5 bg-white">
         <Image
           src="/images/1.jpg"
           alt=""
@@ -146,7 +146,7 @@ const Application = () => {
           </span>
           View
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
