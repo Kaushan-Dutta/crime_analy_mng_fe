@@ -47,5 +47,6 @@ const Sidebar = memo(() => {
     </div>
   );
 });
+Sidebar.displayName = "Sidebar";
 
 export default Sidebar;

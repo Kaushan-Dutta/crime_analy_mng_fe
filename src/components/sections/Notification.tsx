@@ -14,7 +14,7 @@ const Notification = () => {
       <div className="flx-row justify-around  rounded-md text-md px-5 py-3 leading-5 bg-white">
         <p className="">
           Your case {"<"} Case Name {">"} have been accepted by {"<"}Police
-          Station{">"}" .The case Id is CS0012331 , mailed to your registered
+          Station{">"} .The case Id is CS0012331 , mailed to your registered
           email{" "}
         </p>
         <p>1hr</p>
