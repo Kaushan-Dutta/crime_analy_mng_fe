@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AuthContext from "@/context/AuthContext";
+import AuthContext from "@/context/AuthContext"; 
+import { Toaster } from "react-hot-toast";
+import React, { createContext, useContext } from "react";
+import MyApolloProvider from "@/context/ApolloProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,13 +18,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // ... rest of the code
+
   return (
     <html lang="en">
-      <AuthContext>
-        <body className="h-screen max-w-screen-2xl bg-background font-rale text-md mx-auto">
-          {children}
-        </body>
-      </AuthContext>
+      <body className="h-screen max-w-screen-2xl bg-background font-rale text-md mx-auto">
+        <MyApolloProvider>
+          <AuthContext>
+            <Toaster
+              position="top-center"
+              reverseOrder={false}
+              toastOptions={{ duration: 5000 }}
+            />
+            {children}
+          </AuthContext>
+        </MyApolloProvider>
+      </body>
     </html>
   );
 }

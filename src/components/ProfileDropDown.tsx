@@ -19,10 +19,13 @@ const ProfileDropDown = () => {
       <Link href="/fakespot" passHref>
         <MenuItem>FakeSpot</MenuItem>
       </Link>
-      <Link href={`/${account?.role}/dashboard`} passHref>
+      <Link href={`/${account?.role.toLowerCase()}/dashboard`} passHref>
         {account && <MenuItem>Dashboard</MenuItem>}
       </Link>
-      <MenuItem>Logout</MenuItem>
+      <MenuItem onClick={()=>{
+        localStorage.removeItem('token');
+        window.location.href = '/'
+      }}>Logout</MenuItem>
     </MenuList>
   );
 };

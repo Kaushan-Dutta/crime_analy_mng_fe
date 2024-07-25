@@ -25,9 +25,9 @@ const Sidebar = memo(() => {
         </button>
       </div>
       <div className="flex-1 flex flex-col gap-5">
-        {SideBarLinks.filter((link) => link.role.includes(account.role)).map(
+        {SideBarLinks.filter((link) => link.role.includes(account?.role.toLowerCase())).map(
           (link, id) => (
-            <Link href={`/${account.role}/dashboard/${link.link}`} passHref  key={id}>
+            <Link href={`/${account?.role.toLowerCase()}/dashboard/${link.link}`} passHref  key={id}>
               <Button
                
                 className="w-full flx-row justify-start h-10 gap-2 text-background"
