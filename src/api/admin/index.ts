@@ -9,7 +9,8 @@ const GET_AGENCY_FORMS = gql`
             status
         }
     }
-`
+`;
+
 const GET_EVENTS = gql`
     query GetEvents{
         getEvents{
@@ -20,10 +21,15 @@ const GET_EVENTS = gql`
             location
         }
     }
-`
+`;
+
 export const adminApis = () => {
-    const { data:agencies  } = useQuery(GET_AGENCY_FORMS);
-    const { data:events  } = useQuery(GET_EVENTS);
-       
-    return { agencies: agencies?.getAgencyForms, events: events?.getEvents }
-}
+    const { data: agenciesData } = useQuery(GET_AGENCY_FORMS);
+    const { data: eventsData } = useQuery(GET_EVENTS);
+
+    return { 
+        agencies: agenciesData?.getAgencyForms, 
+        events: eventsData?.getEvents,
+    };
+};
+
