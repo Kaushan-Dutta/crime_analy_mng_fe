@@ -23,7 +23,7 @@ const GET_EVENTS = gql`
     }
 `;
 
-export const adminApis = () => {
+export const useAdminApis = () => {
     const { data: agenciesData } = useQuery(GET_AGENCY_FORMS);
     const { data: eventsData } = useQuery(GET_EVENTS);
 

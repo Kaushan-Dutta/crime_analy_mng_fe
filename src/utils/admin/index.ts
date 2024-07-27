@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { toast } from 'react-hot-toast';
-import { adminApis } from '@/api/admin';
+import { useAdminApis } from '@/api/admin';
 import { useRouter } from 'next/navigation';
 
 type UseAdminType = {
@@ -23,7 +23,7 @@ type UseAdminType = {
 export const useAdmin = ():UseAdminType => {
     const router = useRouter();
 
-    const { agencies,events } = adminApis();
+    const { agencies,events } = useAdminApis();
 
     const memoizedAgencies = useMemo(() => agencies, [agencies]);
     const memoizedEvents = useMemo(() => events, [events]);
