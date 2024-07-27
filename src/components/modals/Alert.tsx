@@ -7,6 +7,7 @@ import CrisisAlertIcon from "@mui/icons-material/CrisisAlert";
 import { IconButton, Stack } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { useAlert } from "@/utils/alerts";
 
 type PopType = {
   open: boolean;
@@ -26,6 +27,7 @@ const style = {
 };
 
 const Alert = ({ open, setOpen }: PopType) => {
+  const { location,handleLocation } = useAlert();
   return (
     <div>
       <Modal
@@ -37,8 +39,8 @@ const Alert = ({ open, setOpen }: PopType) => {
       >
         <Box sx={style}  className="flex flex-col gap-5 justify-center text-center">
             <CrisisAlertIcon className="text-error text-6xl mx-auto text-ascent" /> 
-          <Button variant="contained" size="small" className="w-fit mx-auto flx-row gap-2">
-            <LocationOnIcon/>Set Location
+          <Button variant="contained" size="small" className="w-fit mx-auto flx-row gap-2" onClick={handleLocation}>
+            <LocationOnIcon/>{location?('Lat: '+location?.latitude+' Long: '+location?.longitude):'Set Location'}
           </Button>
           <Typography id="modal-modal-title" variant="h6" component="h2" className="font-rale">
             Are you sure want to sent alert?
