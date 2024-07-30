@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Proof:React.FC = () => {
+const Proof = ({pageId}:{pageId:number}) => {
   return (
     <div>Proof</div>
   )

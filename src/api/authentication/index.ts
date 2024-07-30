@@ -23,6 +23,7 @@ const SIGNUP_MUTATION = gql`
         }
     }
 `
+
 export const useAuthentication = () => {
     const { refetch: login } = useQuery(LOGIN_QUERY);
     const { refetch: getAccount } = useQuery(CURR_ACCOUNT);

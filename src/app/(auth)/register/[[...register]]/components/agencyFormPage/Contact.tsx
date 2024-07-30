@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, TextField } from "@mui/material";
 
-const Contact: React.FC = () => {
+const Contact= ({pageId}:{pageId:number}) => {
   return (
     <div className="flex flex-col gap-5">
       <TextField

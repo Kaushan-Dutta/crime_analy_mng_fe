@@ -27,7 +27,7 @@ const style = {
 };
 
 const Alert = ({ open, setOpen }: PopType) => {
-  const { location,handleLocation } = useAlert();
+  const { location,handleLocation,handleAlert } = useAlert();
   return (
     <div>
       <Modal
@@ -45,7 +45,7 @@ const Alert = ({ open, setOpen }: PopType) => {
           <Typography id="modal-modal-title" variant="h6" component="h2" className="font-rale">
             Are you sure want to sent alert?
           </Typography>
-            <Button variant="contained" size="medium" color="success" className=" w-2/3 mx-auto tracking-widest" >
+            <Button variant="contained" size="medium" color="success" className=" w-2/3 mx-auto tracking-widest" onClick={handleAlert}>
               SEND
             </Button>
             

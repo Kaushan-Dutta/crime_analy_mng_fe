@@ -1,48 +1,42 @@
-import React,{useState} from 'react'
-import { Button, TextField ,Stack} from "@mui/material";
-import CachedIcon from '@mui/icons-material/Cached';
-import {useGeolocation, useStartTyping} from 'react-use';
+import React, { useState } from "react";
+import { Button, TextField, Stack } from "@mui/material";
+import CachedIcon from "@mui/icons-material/Cached";
+import { useAgency } from "@/utils/agency";
+import { useAlert } from "@/utils/alerts";
 
-const Location:React.FC = () => {
-  const [location,setLocation] = useState<string>("Set Location"); 
+const Location = ({ pageId }: { pageId: number }) => {
+  const { agencyForm } = useAgency();
+  const { handleLocation, location } = useAlert();
 
   return (
     <div className="flex flex-col gap-5">
+      {agencyForm[0].formList.map((field, id) => (
         <TextField
-          label="Enter Agency Name"
+          key={id}
           variant="outlined"
           size="medium"
           sx={{ width: "100%" }}
+          {...field}
         />
-        <TextField
-          label="Enter your address"
-          variant="outlined"
-          size="medium"
-          sx={{ width: "100%" }}
-        />
-        <Stack direction="row" gap="10px">
-            <Button variant="contained" color="error" sx={{width:"200px",h:"20px"}} onClick={()=>{
-              if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                  console.log("longitude",position)
-                  setLocation(position.coords.latitude + " " + position.coords.longitude);
-                });
-              } else {
-                console.log("Geolocation is not available in your browser.");
-              }
-            }}>
-                {location}
-            </Button>
-            <Button variant="text" color="info" sx={{width:"20px",h:"20px"}} >
-                <CachedIcon/>
-            </Button>
-        </Stack>
+      ))}
 
-      </div>
-  )
-}
+      <Stack direction="row" gap="10px">
+        <Button
+          variant="contained"
+          color="error"
+          sx={{ width: "200px", h: "20px" }}
+          onClick={handleLocation}
+        >
+          {location
+            ? "Lat: " + location?.latitude + " Long: " + location?.longitude
+            : "Set Location"}
+        </Button>
+      </Stack>
+    </div>
+  );
+};
 
-export default Location
+export default Location;
 // navigator.geolocation.getCurrentPosition(
 //   (position) => {
 //       console.log(
