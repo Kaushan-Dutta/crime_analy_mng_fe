@@ -17,15 +17,7 @@ const Contact= ({pageId}:{pageId:number}) => {
         size="medium"
         sx={{ width: "100%" }}
       />
-      <Button
-        variant="contained"
-        color="success"
-        disabled
-        sx={{ height: "50px" }}
-        className="tracking-widest text-lg font-bold"
-      >
-        Login
-      </Button>
+      
     </div>
   );
 };

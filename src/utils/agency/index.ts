@@ -11,6 +11,7 @@ type UseAgencyType = {
         latitude: string,
         longitude: string,
         status: string,
+        createdAt: string,
     }[];
     agencyForm: {
         id: number,
@@ -123,6 +124,8 @@ export const useAgency = (): UseAgencyType => {
             const resAgency=await AgencyRegister(email,pincode,document,latitude,longitude,phone,name);
             // toast.success(resAgency.message)
             console.log(resAgency)
+            toast.success("Agency Registered")
+            window.location.href="/"
         }
         catch (err:any) {
             console.log(err)

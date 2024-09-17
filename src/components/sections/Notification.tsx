@@ -10,8 +10,8 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 const Notification = () => {
   return (
-    <div className="text-[17px]  flex-col flex gap-3 font-normal">
-      <div className="flx-row justify-around  rounded-md text-md px-5 py-3 leading-5 bg-white">
+    <div className="text-[17px]  flex-col flex gap-3 font-mono ">
+      <div className="flx-row justify-around  rounded-md text-md px-5 py-3 leading-5  border">
         <p className="">
           Your case {"<"} Case Name {">"} have been accepted by {"<"}Police
           Station{">"} .The case Id is CS0012331 , mailed to your registered

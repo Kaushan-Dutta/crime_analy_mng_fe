@@ -23,6 +23,8 @@ export const useSignup = (): UseSignupReturnType => {
   const { SignupApi } = useAuthentication();
   const router = useRouter();
 
+  
+
   const signupForm = [
     {
       label: "Enter your email",

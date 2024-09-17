@@ -56,12 +56,11 @@ export const useLogin = (): UseLoginReturnType => {
       const login_res = await LoginApi(email, password);
       //  console.log(res);
       localStorage.setItem('token', login_res.data);
+      toast.success('Login successful');
+      window.location.href="/"
     } catch (err) {
       console.log(err);
-    }
-    finally {
-      toast.success('Login successful');
-      router.push('/');
+      toast.error('Invalid credentials');
     }
   };
 

@@ -1,7 +1,6 @@
 "use client"
 import Image from "next/image";
 import { Button, TextField } from "@mui/material";
-import Link from "next/link";
 import AuthHeading from "../../components/AuthHeading";
 import { useLogin } from "../../../../utils/authentication/login";
 import {useAuth} from "@/context/AuthContext";

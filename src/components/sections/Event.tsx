@@ -31,12 +31,12 @@ const Event: React.FC<EventProps> = ({ events }) => {
   }
 
   return (
-    <div className="text-[17px]  flex-col flex gap-3 font-normal">
+    <div className="text-[17px]  flex-col flex gap-3 font-mono">
       {events &&
         events.length > 0 &&
         events.map((item) => (
           <div key={item?.id} className="flx-row justify-between  rounded-md text-md px-5 py-3 leading-5 border">
-            <div className="flx-row gap-5 w-1/3 ">
+            <div className="flx-row gap-5 w-2/3 ">
               <Image
                 src="/images/1.jpg"
                 alt=""
@@ -51,7 +51,7 @@ const Event: React.FC<EventProps> = ({ events }) => {
             </div>
             <p>{convertDate(item?.date)}</p>
 
-            <Link href="/" className=" flx-row gap-2 w-1/3 justify-center">
+            <Link href="/" className=" flx-row gap-2  justify-center">
               <span>
                 <RemoveRedEyeIcon className="text-ascent" />
               </span>

@@ -11,7 +11,7 @@ type LocationType ={
 export const useAlert = () => {
     const router = useRouter();
     const [location, setLocation] = useState<LocationType | null>(null);
-    const { Alert } = useAlertApi();
+    const { Alert,UpdateAlert } = useAlertApi();
 
     const handleLocation = useCallback(() => {
         if ("geolocation" in navigator) {
@@ -34,10 +34,20 @@ export const useAlert = () => {
         }
     },[location])
 
-
+    const updateAlert = async(id:string,status:string) => {
+        console.log("Alert Here",id,status)
+        try{
+            await UpdateAlert(id,status);
+            toast.success("Alert Updated")
+        }
+        catch(err){
+            toast.error("Error in updating alert")
+        }
+    }
     return {
         location,
         handleLocation,
-        handleAlert
+        handleAlert,
+        updateAlert
     };
 };

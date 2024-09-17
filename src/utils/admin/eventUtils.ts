@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 
 type UseAdminType = {
     agencies: {
-        id: string;
         name: string;
         pincode: string;
         document: string;
@@ -29,11 +28,8 @@ type UseAdminType = {
     }[];
     handleEventCreation: (e: React.FormEvent<HTMLFormElement>) => void;
 };
-// description:description,
-// date:formattedDate,
-// name:name,
-// location:location
-export const useAdmin = (): UseAdminType => {
+
+export const useAdminEvents = (): UseAdminType => {
     const router = useRouter();
 
     const { agencies, events,EventCreation } = useAdminApis();
@@ -105,6 +101,6 @@ export const useAdmin = (): UseAdminType => {
         events: memoizedEvents,
         eventForm,
         handleEventCreation,
-        
+
     };
 };

@@ -29,7 +29,8 @@ const AuthContext = ({ children }: { children: React.ReactNode }) => {
   };
   useEffect(() => {
     const loadAccount = async () => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token") || null;
+      // console.log("Token ", token);
       if (token) {
         try {
           const account_res = await GetAccountApi();
@@ -38,8 +39,7 @@ const AuthContext = ({ children }: { children: React.ReactNode }) => {
         } catch (err) {
           console.log(err);
         }
-        finally{
-            console.log("Account ",account);}
+        
       }
     };
     loadAccount();

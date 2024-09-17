@@ -7,6 +7,7 @@ const GET_ALERTS = gql`
         latitude,
         longitude,
         status,
+        createdAt
     }
 }
 `

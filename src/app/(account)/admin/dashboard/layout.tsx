@@ -22,7 +22,7 @@ export default function RootLayout({
           <div className=" w-60  fixed  top-0 md:top-20  md:h-[calc(100vh-4rem)] h-screen ">
             <Sidebar />
           </div>
-          <div className="md:ml-72 md:mr-10 pt-28 container-small  flex-1 h-fit">{children}</div>
+          <div className="md:ml-72 md:mr-10 pt-28 container-small mb-10 flex-1 h-fit ">{children}</div>
         </div>
       </body>
     </html>

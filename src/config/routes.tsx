@@ -19,7 +19,7 @@ export const SideBarLinks=[
         title:"Notifications",
         icon:<NotificationsIcon className="text-xl text-ascent"/>,
         link:'notifications',
-        role:['admin','user','agency']
+        role:['user','agency']
     },
     {
         title:"Events",
