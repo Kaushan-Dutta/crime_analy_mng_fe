@@ -34,6 +34,8 @@ export const useAgency = (): UseAgencyType => {
     const [pincode, setPincode] = useState('');
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
+    const [state,setState]=useState('');
+    const [city,setCity]=useState('');
 
     const [document, setDocument] = useState('');
     const [name, setName] = useState('');
@@ -59,11 +61,30 @@ export const useAgency = (): UseAgencyType => {
             label:"Agency Location",
             formList: [
                 {
+                    label: 'Enter State',
+                    value: state,
+                    type: 'text',
+                    onChange: (e: React.ChangeEvent<HTMLInputElement>) => setState(e.target.value)
+                },
+                {
+                    label: 'Enter City',
+                    value: city,
+                    type: 'text',
+                    onChange: (e: React.ChangeEvent<HTMLInputElement>) => setCity(e.target.value)
+                },
+                {
                     label: 'Enter Pincode',
                     value: pincode,
                     type: 'number',
                     onChange: (e: React.ChangeEvent<HTMLInputElement>) => setPincode(e.target.value)
-                },
+                }
+            ]
+        },
+        {
+            id: 3,
+            label:"Agency Location",
+            formList: [
+                
                 {
                     label: 'Enter Latitude',
                     value: latitude,
@@ -79,7 +100,7 @@ export const useAgency = (): UseAgencyType => {
             ]
         },
         {
-            id: 3,
+            id: 4,
             label:"Proof",
             formList: [
                 {
@@ -92,7 +113,7 @@ export const useAgency = (): UseAgencyType => {
 
         },
         {
-            id: 4,
+            id: 5,
             formList: [
                 {
                     label: 'Enter your email',
@@ -120,8 +141,8 @@ export const useAgency = (): UseAgencyType => {
         e.preventDefault();
         try {
             console.log("Agency Register")
-            console.log(email,pincode,document,latitude,longitude,phone,name)
-            const resAgency=await AgencyRegister(email,pincode,document,latitude,longitude,phone,name);
+            console.log(email,pincode,document,latitude,longitude,phone,name,state,city)
+            const resAgency=await AgencyRegister(email,pincode,document,latitude,longitude,phone,name,state,city);
             // toast.success(resAgency.message)
             console.log(resAgency)
             toast.success("Agency Registered")
@@ -133,16 +154,16 @@ export const useAgency = (): UseAgencyType => {
         }
 
     }, [
-        email, pincode, document, name, location
+        email, pincode, document, name, location, phone, longitude, latitude
     ])
     useEffect(() => {
-        if (email.trim() !== '' && longitude.trim() !== '' && latitude.trim() !== '' && pincode.trim() !== '' && document.trim() !== '' && name.trim() !== '' && phone.trim() !== '') {
+        if (email.trim() !== '' && longitude.trim() !== '' && latitude.trim() !== '' && pincode.trim() !== '' && document.trim() !== '' && name.trim() !== '' && phone.trim() !== '' && state.trim() !== '' && city.trim() !== '') {
           // console.log(email, password);
           setDisabled(false);
         } else {
           setDisabled(true);
         }
-      }, [email, pincode, document, name, phone, longitude, latitude]);
+      }, [email, pincode, document, name, phone, longitude, latitude, state, city]);
 
     return {
         alerts: memoizedAlerts,

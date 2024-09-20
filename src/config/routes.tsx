@@ -25,7 +25,7 @@ export const SideBarLinks=[
         title:"Events",
         icon:<EventIcon className="text-xl text-ascent"/>,
         link:'events',
-        role:['admin']
+        role:['admin','user','agency']
     },
     {
         title:"Create Event",

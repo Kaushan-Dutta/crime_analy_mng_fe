@@ -5,7 +5,7 @@ import { useAuthentication } from "@/api/authentication";
 
 type Account = {
   email: string;
-  role: "admin" | "user" | "agency";
+  role: "ADMIN" | "USER" | "AGENCY";
   id: string;
 };
 type AccountValue = {

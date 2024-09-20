@@ -17,7 +17,7 @@ const Alert = () => {
   const { alerts } = useAgency();
   const { updateAlert } = useAlert();
 
-  console.log("Alerts", alerts);
+  // console.log("Alerts", alerts);
   const dateConverter = (timestamp: string) => {
     const date = new Date(parseInt(timestamp));
     return date.toLocaleString();

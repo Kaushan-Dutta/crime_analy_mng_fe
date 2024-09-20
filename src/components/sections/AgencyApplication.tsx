@@ -10,7 +10,8 @@ import Image from "next/image";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import CancelIcon from "@mui/icons-material/Cancel";
-import CopyAllOutlinedIcon from '@mui/icons-material/CopyAllOutlined';import MenuItem from "@mui/material/MenuItem";
+import CopyAllOutlinedIcon from "@mui/icons-material/CopyAllOutlined";
+import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import { useAgencyUtils } from "@/utils/admin/agencyUtils";
 
@@ -20,9 +21,9 @@ export type AgencyType = {
   pincode?: string;
   document?: string;
   status: string;
-  phone?: string
-  latitude?: string
-  longitude?: string
+  phone?: string;
+  latitude?: string;
+  longitude?: string;
 };
 
 type AgencyApplicationProps = {
@@ -31,7 +32,7 @@ type AgencyApplicationProps = {
 
 const AgencyApplication: React.FC<AgencyApplicationProps> = ({ agencies }) => {
   const { handleUpdateAgencyStatus } = useAgencyUtils();
-  const [openApproval, setOpenApproval] = useState<boolean>(false);
+  const [openApproval, setOpenApproval] = useState<string | null>();
 
   const ApprovalDrop = ({ id }: { id: string }) => {
     return (
@@ -43,7 +44,7 @@ const AgencyApplication: React.FC<AgencyApplicationProps> = ({ agencies }) => {
         <MenuItem
           onClick={() => {
             handleUpdateAgencyStatus(id, "APPROVED");
-            setOpenApproval(false);
+            setOpenApproval(null);
           }}
         >
           Approve
@@ -51,7 +52,7 @@ const AgencyApplication: React.FC<AgencyApplicationProps> = ({ agencies }) => {
         <MenuItem
           onClick={() => {
             handleUpdateAgencyStatus(id, "REJECTED");
-            setOpenApproval(false);
+            setOpenApproval(null);
           }}
         >
           Reject
@@ -71,10 +72,22 @@ const AgencyApplication: React.FC<AgencyApplicationProps> = ({ agencies }) => {
             key={id}
           >
             <p className="w-1/5">{agency?.name}</p>
-            <p className="w-1/5 flx-row gap-1">{agency?.phone}<IconButton size="small"><CopyAllOutlinedIcon className="text-md text-green-600"/></IconButton></p>
-            <p className="w-1/5">LAT: {agency?.latitude}{"     "}LONG: {agency?.longitude}</p>
+            <p className="w-1/5 flx-row gap-1">
+              {agency?.phone}
+              <IconButton size="small">
+                <CopyAllOutlinedIcon className="text-md text-green-600" />
+              </IconButton>
+            </p>
+            <p className="w-1/5">
+              LAT: {agency?.latitude}
+              {"     "}LONG: {agency?.longitude}
+            </p>
 
-            <Link href={agency?.document || ''} className="w-1/5 flx-row gap-2">
+            <Link
+              href={agency?.document || ""}
+              target="_blank"
+              className="w-1/5 flx-row gap-2"
+            >
               <span>
                 <RemoveRedEyeIcon className="text-ascent" />
               </span>
@@ -104,12 +117,15 @@ const AgencyApplication: React.FC<AgencyApplicationProps> = ({ agencies }) => {
                   color="primary"
                   aria-label="edit icon"
                   onClick={() => {
-                    setOpenApproval(!openApproval);
+                    if (openApproval === agency.id) setOpenApproval(null);
+                    else setOpenApproval(agency.id);
                   }}
                 >
                   <EditNoteIcon className="text-ascent" />
                 </IconButton>
-                {openApproval && <ApprovalDrop id={agency.id} />}
+                {openApproval && openApproval == agency.id && (
+                  <ApprovalDrop id={agency.id} />
+                )}
               </div>
             )}
           </div>

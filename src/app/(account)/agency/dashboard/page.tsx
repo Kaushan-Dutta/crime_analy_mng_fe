@@ -1,8 +1,11 @@
+"use client"
 import Searchbar from "@/components/Searchbar";
 import Filter from "@/components/Filter";
 import Case from "@/components/sections/Case";
+import { useCaseUtils } from "@/utils/agency/caseUtils";
 
 export default function Admin() {
+  const { cases } = useCaseUtils();
   return (
     <div className="flex-col gap-10 flex">
       <div className="w-2/3 mx-auto">
@@ -11,7 +14,7 @@ export default function Admin() {
       <div className="flx-row ">
         <Filter props={["By Date", "By Status"]} />
       </div>
-      <Case />
+      <Case cases={cases}/>
     </div>
   );
 }

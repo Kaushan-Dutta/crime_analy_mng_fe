@@ -21,11 +21,6 @@ const handleState = (state: number, action: CounterAction): number => {
       return state;
   }
 };
-const Pages: { [key: number]: JSX.Element } = {
-  1: <Location pageId={1} />,
-  2: <Proof pageId={2} />,
-  3: <Contact pageId={3} />,
-};
 
 const SignUpAsAgency: React.FC = () => {
   const [state, dispatch] = useReducer(handleState, 0);
@@ -44,7 +39,7 @@ const SignUpAsAgency: React.FC = () => {
           />
         ))}
       </div>
-      {state === 3 && (
+      {state === agencyForm.length-1 && (
         <Button
           variant="contained"
           color="success"
@@ -74,7 +69,7 @@ const SignUpAsAgency: React.FC = () => {
         <Button
           variant="text"
           onClick={() => {
-            if (state != 3) {
+            if (state != agencyForm.length-1) {
               dispatch({ type: "increment" });
             }
           }}
