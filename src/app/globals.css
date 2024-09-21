@@ -5,6 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.container-extralarge{
+    @apply md:px-[16rem] px-[1rem] py-[1rem] md:text-base text-sm
+}
 .container-large{
     @apply md:px-[12rem] px-[1rem] py-[1rem] md:text-base text-sm
 }
