@@ -10,47 +10,44 @@ import {
   IconButton,
   Button,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { useEffect } from "react";
+import { useCase } from "@/utils/case";
 
-export default function Case({ params, searchParams }: any) {
-  if (params.caseId === "92") {
-    notFound();
-  }
+type TextType={
+  label: string,
+  defaultValue: string,
+  disabled?: boolean
+}
+
+const CustomTextField = ({label, defaultValue, disabled = true }:TextType) => (
+  <TextField
+    label={label}
+    variant="outlined"
+    size="medium"
+    disabled={disabled}
+    defaultValue={defaultValue}
+    InputLabelProps={{ shrink: true }}
+    sx={{ width: "100%" }}
+  />
+);
+
+export default function Case() {
+  const { caseDes, caseUpdate } = useCase();
+  console.log(caseDes);
+
   return (
     <form className="flex-col mt-28 gap-5 flex ">
-      <TextField
-        label="Case Type"
-        variant="outlined"
-        size="medium"
-        disabled
-        defaultValue={params.caseId}
-        sx={{ width: "100%" }}
-      />
-      <TextField
-        label="Case Name"
-        variant="outlined"
-        size="medium"
-        disabled
-        defaultValue={"Instagram Fraud"}
-        sx={{ width: "100%" }}
-      />
+      <CustomTextField label="Case Type" defaultValue={caseDes?.type} />
+      <CustomTextField label="Case Name" defaultValue={caseDes?.name} />
+
       <div className="flx-row justify-between gap-5">
-        <TextField
-          label="Phone Number"
-          variant="outlined"
-          size="medium"
-          disabled
-          defaultValue={"9874563214"}
-          sx={{ width: "100%" }}
-        />
-        <TextField
-          label="Pincode"
-          variant="outlined"
-          size="medium"
-          disabled
-          defaultValue={"700137"}
-          sx={{ width: "100%" }}
-        />
+        <CustomTextField label="Phone Number" defaultValue={caseDes?.phone} />
+        <CustomTextField label="Pincode" defaultValue={caseDes?.pincode} />
+      </div>
+
+      <div className="flx-row justify-between gap-5">
+        <CustomTextField label="Complainer Name" defaultValue={""} />
+        <CustomTextField label="Agency" defaultValue={caseDes?.agency?.name} />
       </div>
       <div className="flex flex-col ">
         <label className="flx-row gap-2 text-xl font-semibold">
@@ -65,9 +62,10 @@ export default function Case({ params, searchParams }: any) {
           </IconButton>
         </label>
         <div className="flex flex-col gap-3 items-end">
-          <IconButton className="">
-            <DeleteIcon className="text-green-400" />
-          </IconButton>
+          <Button className="flx-row" variant="outlined">
+            {/* <DeleteIcon  /> */}
+            <span className="">Delete</span>
+          </Button>
           <TextField
             variant="outlined"
             label="URL"
@@ -96,27 +94,34 @@ export default function Case({ params, searchParams }: any) {
         </div>
       </div>
       <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-5">
-          <TextField
-           label="URL"
-           variant="outlined"
-           size="medium"
-           disabled
-           defaultValue={"700137"}
-           sx={{ width: "100%" }}
-          />
-          <TextField
-            label="Description"
-            variant="outlined"
-            size="medium"
-            disabled
-            multiline
-            defaultValue={"700137"}
-            sx={{ width: "100%" }}
-          />
-        </div>
+        {caseDes?.evidence.map((evidence:any)=>(
+          <div className="flex flex-col gap-5">
+            <TextField
+              label="URL"
+              variant="outlined"
+              size="medium"
+              disabled
+              defaultValue={evidence.url}
+              sx={{ width: "100%" }}
+            />
+            <TextField
+              label="Description"
+              variant="outlined"
+              size="medium"
+              disabled
+              multiline
+              defaultValue={evidence.description}
+              sx={{ width: "100%" }}
+            />
+          </div>
+        ))}
       </div>
-      <Button type="submit" variant="contained"  color="success" className="tracking-widest h-10 w-1/3">
+      <Button
+        type="submit"
+        variant="contained"
+        color="success"
+        className="tracking-widest h-10 w-1/3"
+      >
         Update
       </Button>
     </form>
