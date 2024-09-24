@@ -7,8 +7,8 @@ import { useAgencyApis } from '@/api/agency';
 export const useCaseUtils = () => {
     const router = useRouter();
     const [cases, setCases] = useState([]);
-    const { GetAgencyCases,UpdateCaseStatus } = useAgencyApis();
-    // const memoizedCases = useMemo(() => cases, [cases]);
+    const { GetAgencyCases,UpdateCaseStatus , allcases} = useAgencyApis();
+    const memoizedCases = useMemo(() => allcases, [allcases]);
     const fetchCases = useCallback(async () => {
         try {
             const res = await GetAgencyCases();
@@ -39,6 +39,7 @@ export const useCaseUtils = () => {
     console.log("Cases are ",cases)
     return {
         cases,
-        handleUpdateCaseStatus
+        handleUpdateCaseStatus,
+        allcases:memoizedCases
     };
 };

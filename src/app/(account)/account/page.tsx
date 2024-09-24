@@ -2,9 +2,11 @@
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
 import { Button, TextField } from "@mui/material";
+import { useAccount } from "@/utils/account";
 
 export default function Account() {
   const { account } = useAuth();
+  const { handleUpdate,updateForm,phone,setPhone } = useAccount();
   return (
     <div className="container-small flex md:flex-row flex-col items-center justify-between gap-10">
       <div className="flex flex-col gap-5 justify-center text-center md:w-1/3 ">
@@ -18,6 +20,7 @@ export default function Account() {
       </div>
       <div className="flex-1   justify-end">
         <form className="flex-col flex gap-5">
+          
           <TextField
             label="Your email"
             variant="outlined"
@@ -26,21 +29,15 @@ export default function Account() {
             defaultValue={account?.email}
             sx={{ width: "100%" }}
           />
-          <TextField
-            type="text"
-            label="Your Password"
-            variant="outlined"
-            size="medium"
-            sx={{ width: "100%" }}
-          />
-          <TextField
-            type="text"
-            label="Your Address"
-            variant="outlined"
-            size="medium"
-            sx={{ width: "100%" }}
-            multiline
-          />
+          {updateForm && updateForm.map((ele:any,id)=>(
+            <TextField
+              variant="outlined"
+              size="medium"
+              sx={{ width: "100%" }}
+              {...ele}
+              key={id}
+            />
+          ))}
           <div className="flx-row gap-3">
             <TextField
               type="number"
@@ -64,6 +61,7 @@ export default function Account() {
               variant="contained"
               size="large"
               className="w-fit tracking-widest"
+              onClick={handleUpdate}
             >
               UPDATE
             </Button>

@@ -29,8 +29,8 @@ query GetCase($id: String!) {
 
 `
 const CASE_REGISTER = gql`
-    mutation CaseRegister($data:[EvidenceInput],$caseId:String!){
-        caseRegister(data:$data,caseId:$caseId){
+    mutation UpdateCase($data:[EvidenceInput],$caseId:String!){
+        updateCase(data:$data,caseId:$caseId){
             message
         }
     }

@@ -5,6 +5,12 @@ import { useRouter } from 'next/navigation';
 import { useCaseApi } from '@/api/case';
 import { useSearchParams, usePathname } from 'next/navigation';
 
+export type EvidenceType = {
+    url?: string,
+    file?: string,
+    description: string
+}
+
 export const useCase = () => {
     const router = useRouter();
     const search_params = useSearchParams();
@@ -13,6 +19,7 @@ export const useCase = () => {
     const { Case, CaseUpdate } = useCaseApi();
 
     const [caseDes, setCaseDes] = useState<any>();
+    const [evidence, setEvidence] = useState<EvidenceType[]>([]);
 
     const getCase = useCallback(async (caseId: string) => {
         try {
@@ -33,17 +40,29 @@ export const useCase = () => {
             getCase(caseId);
         }
     }, [getCase]);
-    const caseUpdate = async (evidence: any, caseId: string) => {
+    const caseUpdate = useCallback(async (e:React.FormEvent) => {
+        e.preventDefault();
         try {
-            const res = await CaseUpdate(evidence, caseId);
-            console.log(res);
+            const caseId = pathname.split("/")[2];
+            console.log(evidence, caseId);
+            if (!caseId) {
+                toast.error("Case Id not found");
+                return;
+            }
+
+            await CaseUpdate(evidence, caseId);
+            
+            toast.success("Case Updated");
         }
         catch (e: any) {
+            console.log(e.message);
             toast.error(e.message)
         }
-    }
+    },[evidence])
     return {
         caseDes,
-        caseUpdate
+        caseUpdate,
+        evidence,
+        setEvidence
     }
 };

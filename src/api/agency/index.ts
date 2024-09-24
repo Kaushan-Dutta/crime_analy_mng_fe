@@ -1,4 +1,4 @@
-import { gql, useQuery,useMutation } from '@apollo/client';
+import { gql, useQuery, useMutation } from '@apollo/client';
 
 const GET_ALERTS = gql`
     query GetAlerts{
@@ -11,14 +11,14 @@ const GET_ALERTS = gql`
     }
 }
 `
-const REGISTER=gql`
+const REGISTER = gql`
     mutation AgencyRegister($data:AgencyApplyForm){
         agencyRegister(data:$data){
             message
         }
     }
 `
-const GET_CASES=gql`
+const GET_CASES = gql`
     query GetAgencyCases{
         getAgencyCases{
             id
@@ -29,7 +29,23 @@ const GET_CASES=gql`
         }
     }
 `
-const UPDATE_CASE_STATUS=gql`
+
+const GET_ALL_CASES = gql`
+    query GetAllCases{
+        getAllCases{
+            id
+            name
+            createdAt
+            pincode
+            type
+            agency{
+                id
+                name
+            }
+        }
+    }
+`
+const UPDATE_CASE_STATUS = gql`
     mutation UpdateCaseStatus($id:ID,$status:String){
         updateCaseStatus(id:$id,status:$status){
             message
@@ -38,12 +54,14 @@ const UPDATE_CASE_STATUS=gql`
 `
 export const useAgencyApis = () => {
     const { data: alerts } = useQuery(GET_ALERTS);
+    const { data: cases } = useQuery(GET_ALL_CASES);
+
     const [register] = useMutation(REGISTER);
     const { refetch: getCases } = useQuery(GET_CASES);
     const [updateCaseStatus] = useMutation(UPDATE_CASE_STATUS);
 
-    const AgencyRegister = async (email:string,pincode:string,document:string,latitude:string,longitude:string,phone:string,name:string,state:string,city:string) => {
-        console.log(email,pincode,document,"Latitude ",latitude,"longitude ",longitude,phone,name)
+    const AgencyRegister = async (email: string, pincode: string, document: string, latitude: string, longitude: string, phone: string, name: string, state: string, city: string) => {
+        console.log(email, pincode, document, "Latitude ", latitude, "longitude ", longitude, phone, name)
 
         const { data: { agencyRegister: res } } = await register({
             variables: {
@@ -64,11 +82,11 @@ export const useAgencyApis = () => {
     }
     const GetAgencyCases = async () => {
         const { data: { getAgencyCases: res } } = await getCases()
-        console.log("Get Agency Caes",res)
+        console.log("Get Agency Caes", res)
         return res
     }
 
-    const UpdateCaseStatus = async (id:string,status:string) => {
+    const UpdateCaseStatus = async (id: string, status: string) => {
         const { data: { updateCaseStatus: res } } = await updateCaseStatus({
             variables: {
                 id: id,
@@ -79,6 +97,7 @@ export const useAgencyApis = () => {
     }
     return {
         alerts: alerts?.getAlerts,
+        allcases: cases?.getAllCases,
         AgencyRegister,
         GetAgencyCases,
         UpdateCaseStatus
