@@ -4,43 +4,19 @@ import { toast } from 'react-hot-toast';
 import { useAdminApis } from '@/api/admin';
 import { useRouter } from 'next/navigation';
 
-type UseAdminType = {
-    agencies: {
-        name: string;
-        pincode: string;
-        document: string;
-        status: string;
-    }[];
-    events: {
-        id: string;
-        name: string;
-        description: string;
-        date: string;
-        location: string;
-    }[];
 
-    eventForm: {
-        label: string;
-        type: string;
-        value: string;
-        onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-        multiline?: boolean;
-    }[];
-    handleEventCreation: (e: React.FormEvent<HTMLFormElement>) => void;
-};
-
-export const useAdminEvents = (): UseAdminType => {
+export const useAdminEvents = () => {
     const router = useRouter();
 
-    const { agencies, events,EventCreation } = useAdminApis();
+    const {  events,EventCreation } = useAdminApis();
 
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
     const [eventname, setEventName] = useState('');
     const [location, setLocation] = useState('');
-   
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
 
-    const memoizedAgencies = useMemo(() => agencies, [agencies]);
     const memoizedEvents = useMemo(() => events, [events]);
 
     const eventForm = [
@@ -78,17 +54,30 @@ export const useAdminEvents = (): UseAdminType => {
             },
             value: location
         },
-
+        {
+            label: 'Start Time',
+            type: 'text',
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+                setStartTime(e.target.value);
+            },
+            value: startTime
+        },
+        {
+            label: 'End Time',
+            type: 'text',
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+                setEndTime(e.target.value);
+            },
+            value: endTime
+        }
     ]
 
     const handleEventCreation = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try{
             console.log(description, date, eventname, location);
-            const resEvent = await EventCreation(description, date, eventname, location);
-            // console.log(resEvent);
-            toast.success(resEvent.message);
-            console.log("Event created successfully");
+            await EventCreation(description, date, eventname, location, startTime,endTime);
+            toast.success("Event created successfully");
         }
         catch(err:any){
             console.log(err.message);
@@ -97,10 +86,8 @@ export const useAdminEvents = (): UseAdminType => {
     }, [description, date, eventname, location]);    
 
     return {
-        agencies: memoizedAgencies,
         events: memoizedEvents,
         eventForm,
-        handleEventCreation,
-
+        handleEventCreation
     };
 };

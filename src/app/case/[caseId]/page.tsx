@@ -32,8 +32,8 @@ const CustomTextField = ({
 
 export default function Case({ params, searchParams }: any) {
   const { caseDes, caseUpdate, evidence, setEvidence } = useCase();
-  // console.log(caseDes);
-  // console.log(params, searchParams);
+  console.log(caseDes);
+  console.log(params, searchParams);
   return (
     <form className="flex-col mt-28 gap-5 flex " onSubmit={caseUpdate}>
       <CustomTextField label="Case Type" defaultValue={caseDes?.type} />

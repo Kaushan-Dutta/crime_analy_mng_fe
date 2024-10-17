@@ -3,11 +3,10 @@ import { gql, useQuery, useMutation } from '@apollo/client';
 const GET_EVENT = gql`
 query GetEvent($id:String!){
   getEvent(id:$id){
-    id
-    name
-    description
-    date
-    location
+    statuscode
+    message
+    data
+    success
   }
 }
 
@@ -24,7 +23,7 @@ export const useEventApi = () => {
             id: eventId
         })
         console.log(res);
-        return res
+        return res.data
     }
     
     return {

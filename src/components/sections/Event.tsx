@@ -51,7 +51,7 @@ const Event: React.FC<EventProps> = ({ events }) => {
             </div>
             <p>{convertDate(item?.date)}</p>
 
-            <Link href="/" className=" flx-row gap-2  justify-center">
+            <Link href={`/event/${item?.id}`} className=" flx-row gap-2  justify-center">
               <span>
                 <RemoveRedEyeIcon className="text-ascent" />
               </span>

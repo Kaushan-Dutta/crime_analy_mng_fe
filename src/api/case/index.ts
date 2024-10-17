@@ -3,27 +3,9 @@ import { gql, useQuery, useMutation } from '@apollo/client';
 const GET_CASE = gql`
 query GetCase($id: String!) {
   getCase(id: $id) {
-      id
-      type
-      name
-      phone
-      pincode
-      account{
-        id
-        name
-      }
-      evidence {
-        id
-        url
-        description
-        file
-        caseId
-      }
-    
-    agency {
-      id
-      name
-    }
+      statuscode
+      message
+      data
   }
 }
 
@@ -31,7 +13,9 @@ query GetCase($id: String!) {
 const CASE_REGISTER = gql`
     mutation UpdateCase($data:[EvidenceInput],$caseId:String!){
         updateCase(data:$data,caseId:$caseId){
+            statuscode
             message
+            data
         }
     }
 `
@@ -44,17 +28,17 @@ type EvidenceInput = {
 }
 export const useCaseApi = () => {
 
-    const { refetch: getCase } = useQuery(GET_CASE);
+    const { refetch: getCase } = useQuery(GET_CASE,{skip:true});
     const [caseRegister] = useMutation(CASE_REGISTER);
 
     const Case = async (caseId: string) => {
-        // console.log("The case of the current in apis", caseId);
+        console.log("The case of the current in apis", caseId);
 
         const { data: { getCase: res } } = await getCase({
             id: caseId
         })
-        // console.log(res);
-        return res
+        console.log(res);
+        return res.data
     }
     const CaseUpdate = async (evidence: EvidenceInput[], caseId: string) => {
         console.log(evidence, caseId);

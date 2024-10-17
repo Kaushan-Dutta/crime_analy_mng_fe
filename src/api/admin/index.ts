@@ -1,43 +1,41 @@
-import { gql, useQuery,useMutation } from '@apollo/client';
+import { gql, useQuery, useMutation } from '@apollo/client';
 
 const GET_AGENCY_FORMS = gql`
     query GetAgencyForms{
-        getAgencyForms{
-            id
-            name
-            pincode
-            document
-            status
-            phone
-            latitude
-            longitude
-        }
+    getAgencyForms{
+        statuscode
+        message
+        data
     }
+}
 `;
 
 const GET_EVENTS = gql`
     query GetEvents{
-        getEvents{
-            id
-            name
-            description
-            date
-            location
-        }
+    getEvents{
+        message
+        statuscode
+        data
+        success
     }
+}
 `;
 const CREATE_EVENT = gql`
-    mutation CreateEvent($data:EventInput){
-        createEvent(data:$data){
-            message
-        }
+    mutation CreateEvent($data:EventInput!){
+    createEvent(data:$data){
+        statuscode
+        message
+        data
     }
+}
 `
 
 const UPDATE_AGENCY_STATUS = gql`
     mutation UpdateAgencyFormStatus($id:ID,$status:ApplicationStatus){
         updateAgencyFormStatus(id:$id,status:$status){
+            statuscode
             message
+            data
         }
     }
 `
@@ -47,35 +45,37 @@ export const useAdminApis = () => {
     const [createEvent] = useMutation(CREATE_EVENT);
     const [updateAgencyStatus] = useMutation(UPDATE_AGENCY_STATUS);
 
-    const EventCreation = async (description:string,date:string,name:string,location:string) => {
+    const EventCreation = async (description: string, date: string, name: string, location: string, startTime: string, endTime: string) => {
 
         const { data: { createEvent: res } } = await createEvent({
             variables: {
                 data: {
-                    description:description,
-                    date:date,
-                    name:name,
-                    location:location
+                    description: description,
+                    date: date,
+                    name: name,
+                    location: location,
+                    startTime: startTime,
+                    endTime: endTime
                 }
             }
         })
-        return res
+        return res.data
     }
 
-    const UpdateAgencyStatus = async (id:string,status:string) => {
-        console.log(id,status,"From apis");
+    const UpdateAgencyStatus = async (id: string, status: string) => {
+        console.log(id, status, "From apis");
 
         const { data: { updateAgencyFormStatus: res } } = await updateAgencyStatus({
             variables: {
-                id:id,
-                status:status
+                id: id,
+                status: status
             }
         })
-        return res
+        return res.data
     }
-    return { 
-        agencies: agenciesData?.getAgencyForms, 
-        events: eventsData?.getEvents,
+    return {
+        agencies: agenciesData?.getAgencyForms?.data,
+        events: eventsData?.getEvents?.data,
         EventCreation,
         UpdateAgencyStatus
     };

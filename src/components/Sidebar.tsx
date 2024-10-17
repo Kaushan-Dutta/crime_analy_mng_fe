@@ -9,6 +9,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { SideBarLinks } from "@/config/routes";
 
 import { useAuth } from "@/context/AuthContext";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Sidebar = memo(() => {
   const { account } = useAuth();
@@ -18,31 +19,30 @@ const Sidebar = memo(() => {
   }
   
   return (
-    <div className="pt-5 pb-10 px-5 flex flex-col gap-3  h-full bg-background1">
-      <div className="block md:hidden flx-row justify-end ">
-        <button className="relative left-11 p-2 hover:bg-background1 hover:bg-opacity-25 rounded-full">
-          <ArrowForwardIosIcon className="text-3xl rounded-full p-2 bg-background1 text-ascent " />
-        </button>
-      </div>
-      <div className="flex-1 flex flex-col gap-5">
+    <div className="pt-5 pb-10 px-5 flex flex-col gap-3  h-full bg-background1 rounded-lg">
+     
+      <div className="flex-1 flex flex-col gap-5 items-center md:items-start">
         {SideBarLinks.filter((link) => link.role.includes(account?.role.toLowerCase())).map(
           (link, id) => (
             <Link href={`/${account?.role.toLowerCase()}/dashboard/${link.link}`} passHref  key={id}>
               <Button
                
-                className="w-full flx-row justify-start h-10 gap-2 text-background"
+                className="w-full flx-row md:justify-start justify-center h-10 gap-2 text-background"
               >
-                {link.icon}
-                {link.title}
+                <span >{link.icon}</span>
+                <span className="md:inline hidden">{link.title}</span>
               </Button>
             </Link>
           )
         )}
       </div>
-      <div className="flex flex-col ">
-        <Button variant="contained" color="error" className="w-full h-10">
+      <div className="flex flex-col cursor-pointer">
+        <Button variant="contained" color="error" className="w-full h-10 hidden md:inline">
           Logout
         </Button>
+        <IconButton className="md:hidden">
+          <LogoutIcon className="text-ascent"/>
+        </IconButton>
       </div>
     </div>
   );

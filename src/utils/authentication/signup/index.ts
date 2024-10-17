@@ -55,14 +55,13 @@ export const useSignup = (): UseSignupReturnType => {
     e.preventDefault();
     try {
       const signup_res = await SignupApi(email, password);
-      // console.log(signup_res);
+      console.log(signup_res);
+      toast.success('SignUp successful');
+      // router.push('/login');
 
     } catch (err) {
       console.log(err);
-    }
-    finally{
-      toast.success('SignUp successful');
-      router.push('/login');
+      toast.error('SignUp failed');
     }
   };
 

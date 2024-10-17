@@ -12,8 +12,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-rale flex flex-col">
-        <div className="fixed w-full z-20 max-w-screen-2xl">
+       <body className="w-full  font-rale flex flex-col">
+        <div className="fixed w-full z-20 p-3">
           <Navbar />
         </div>
 

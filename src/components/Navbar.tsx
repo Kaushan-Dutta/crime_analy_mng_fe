@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className="md:h-20 h-14 py-2 px-7 flex justify-between items-center bg-background1 text-background">
+    <div className="md:h-20 h-14 py-2 px-7 flex justify-between items-center bg-background1 text-background rounded-lg">
       <div className="font-aton md:text-3xl text-xl tracking-wider">
         <Link href="/">CrimeWatch</Link>
       </div>

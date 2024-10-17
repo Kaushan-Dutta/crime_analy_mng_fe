@@ -12,7 +12,7 @@ export type EvidenceType = {
 
 export const useCaseUtils = () => {
     const router = useRouter();
-    const { CaseRegister, GetUserCases } = useUserApis();
+    const { CaseRegister, cases } = useUserApis();
 
     const [caseType, setCaseType] = useState<'CYBER' | 'MISSING' | 'KIDNAPPING' | 'TRAFFICKING' | 'ACCIDENT' | 'OTHER'>('CYBER');
     const [name, setName] = useState<string>('');
@@ -20,10 +20,8 @@ export const useCaseUtils = () => {
     const [pincode, setPincode] = useState<string>('');
     const [evidence, setEvidence] = useState<EvidenceType[]>([]);
 
-    const [cases, setCases] = useState([]);
-
-    // const memoizedAgencies = useMemo(() => agencies, [agencies]);
-
+    const memoizedCases = useMemo(() => cases, [cases]);
+    console.log("Memoized Cases", memoizedCases);
     const handleCaseRegister = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
         console.log(caseType, name, phone, pincode, evidence);
@@ -64,23 +62,8 @@ export const useCaseUtils = () => {
             value: pincode
         }
     ]
-    const fetchCases = useCallback(async () => {
-        try {
-            const res = await GetUserCases();
-            console.log("The Cases",res);
-            setCases(res);
-        }
-        catch (error: any) {
-            console.log("Error is ", error.message);
-            toast.error('Error fetching cases');
-        }
-    }, [])
-    useEffect(() => {
-        fetchCases();
-    }, [fetchCases]);
+    
     return {
-        // agencies: memoizedAgencies,
-
-        caseForm, evidence, setEvidence, caseType, setCaseType, handleCaseRegister,cases
+        caseForm, evidence, setEvidence, caseType, setCaseType, handleCaseRegister,cases:memoizedCases
     };
 };

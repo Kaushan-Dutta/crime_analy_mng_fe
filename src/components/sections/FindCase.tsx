@@ -13,16 +13,16 @@ import { useAuth } from "@/context/AuthContext";
 
 const FindCase = () => {
   const { account } = useAuth();
-  const { allcases } = useCaseUtils();
+  const { allCases } = useCaseUtils();
   const [openRequest, setOpenRequest] = useState<string | null>(null);
-  console.log("All Cases", allcases);
+  console.log("All Cases", allCases);
   const dateFormat = (timestamp: string) => {
     const date = new Date(parseInt(timestamp));
     return date.toLocaleDateString();
   };
   return (
     <div className="text-[17px]  flex-col flex gap-3 font-mono">
-      {allcases?.map((_case: any) => (
+      {allCases?.map((_case: any) => (
         <div className="flex flex-col gap-5 justify-around  rounded-md text-md px-5 py-3 leading-5 border">
           <div className=" gap-3 justify-between flx-row ">
             <p className="w-1/5">{_case.name}</p>
@@ -35,7 +35,7 @@ const FindCase = () => {
             </div>
             <div className="flex-1">
               {account && _case.agency.id == account.id && (
-                <Link href="/" className="flx-row gap-2   w-1/5">
+                <Link href="/" className="flx-row gap-2 justify-center  w-1/5">
                   <IconButton>
                     <RemoveRedEyeIcon className="text-ascent" />
                   </IconButton>
@@ -56,7 +56,7 @@ const FindCase = () => {
               )}
             </div>
           </div>
-          {account && _case.agency.id != account.id && (
+          {account && _case.agency.id != account.id && openRequest==_case.id && (
             <div className="flex flex-col gap-5  rounded-md text-md px-5 py-3 leading-5 border">
               <TextField
                 multiline
@@ -82,20 +82,4 @@ const FindCase = () => {
 
 export default FindCase;
 
-// {account?.role == "AGENCY" && (
-//   <div className="flex flex-col gap-3  rounded-md text-md px-5 py-3 leading-5 bg-white border">
-//     <TextField
-//       label="Description"
-//       variant="outlined"
-//       size="small"
-//       required
-//       multiline={true}
-//       rows={4}
-//       fullWidth
-//       margin="normal"
-//     />
-//     <Button variant="contained" color="success" sx={{ width: "160px" }}>
-//       Send Req
-//     </Button>
-//   </div>
-// )}
+

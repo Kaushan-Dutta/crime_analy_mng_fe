@@ -80,7 +80,7 @@ const Case: React.FC<CaseProps> = ({ cases }) => {
             </span>
             {caseItem.status}
           </p> */}
-          <Link href="/" className="flx-row gap-2   w-1/5">
+          <Link href={`/case/${caseItem.id}`} className="flx-row gap-2   w-1/5">
             <IconButton>
               <RemoveRedEyeIcon className="text-ascent" />
             </IconButton>

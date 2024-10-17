@@ -3,7 +3,7 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useCaseApi } from '@/api/case';
-import { useSearchParams, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 export type EvidenceType = {
     url?: string,
@@ -12,8 +12,7 @@ export type EvidenceType = {
 }
 
 export const useCase = () => {
-    const router = useRouter();
-    const search_params = useSearchParams();
+  
     const pathname = usePathname();
 
     const { Case, CaseUpdate } = useCaseApi();
@@ -23,9 +22,9 @@ export const useCase = () => {
 
     const getCase = useCallback(async (caseId: string) => {
         try {
-            // console.log("The case of the current",caseId);
+            console.log("The case of the current",caseId);
             const res = await Case(caseId);
-            // console.log("The case of the current",res);
+            console.log("The case of the current",res);
             setCaseDes(res);
         }
         catch (e: any) {

@@ -9,11 +9,12 @@ const LOGIN_QUERY = gql`
 `
 const CURR_ACCOUNT = gql`
     query GetAccount{
-        getAccount{
-            email
-            role
-            id
-        }
+    getAccount{
+        message
+        statuscode
+        data
+        success
+    }
 }
 `
 const SIGNUP_MUTATION = gql`
@@ -37,7 +38,6 @@ export const useAuthentication = () => {
     const [updateAccount] = useMutation(UPDATE_ACCOUNT);
 
     const LoginApi = async (email: String, password: String) => {
-
         const { data: { accountLogin: res } } = await login({
             email: email, password: password,
         })
@@ -45,7 +45,7 @@ export const useAuthentication = () => {
     }
     const GetAccountApi = async () => {
         const { data: { getAccount: res } } = await getAccount()
-        return res
+        return res.data
     }
     const SignupApi = async (email: String, password: String) => {
         const { data: { register: res } } = await signup({

@@ -25,5 +25,5 @@ export default function Event({ params, searchParams }: any) {
     <h1 className="text-2xl">{event?.name}</h1>
     <p>{event?.description}</p>
     </div>
-  </div>;
+  </div>
 }
