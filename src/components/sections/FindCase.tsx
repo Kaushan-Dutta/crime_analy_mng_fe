@@ -22,8 +22,8 @@ const FindCase = () => {
   };
   return (
     <div className="text-[17px]  flex-col flex gap-3 font-mono">
-      {allCases?.map((_case: any) => (
-        <div className="flex flex-col gap-5 justify-around  rounded-md text-md px-5 py-3 leading-5 border">
+      {allCases?.map((_case: any,id:any) => (
+        <div className="flex flex-col gap-5 justify-around  rounded-md text-md px-5 py-3 leading-5 border" key={id}>
           <div className=" gap-3 justify-between flx-row ">
             <p className="w-1/5">{_case.name}</p>
             <p className="w-1/5">{dateFormat(_case.createdAt)}</p>

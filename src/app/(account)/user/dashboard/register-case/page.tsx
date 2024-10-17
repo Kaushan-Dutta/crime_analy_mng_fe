@@ -64,7 +64,7 @@ export default function CaseRegister() {
           </IconButton>
         </label>
         {evidence.map((item, index) => (
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5" key={index}>
             <TextField
               variant="outlined"
               label="URL"

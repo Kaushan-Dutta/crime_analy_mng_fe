@@ -62,7 +62,7 @@ export default function Case({ params, searchParams }: any) {
         </label>
         <div className="flex flex-col gap-3">
           {evidence.map((item, index) => (
-            <div className="flex flex-col gap-3 items-end">
+            <div className="flex flex-col gap-3 items-end" key={index}>
               <Button
                 className="flx-row"
                 variant="outlined"
@@ -106,8 +106,8 @@ export default function Case({ params, searchParams }: any) {
         </div>
       </div>
       <div className="flex flex-col gap-3">
-        {caseDes?.evidence.map((evidence: any) => (
-          <div className="flex flex-col gap-5">
+        {caseDes?.evidence.map((evidence: any,id:any) => (
+          <div className="flex flex-col gap-5" key={id}>
             <CustomTextField label="URL" defaultValue={evidence.url} />
             <CustomTextField
               label="Description"

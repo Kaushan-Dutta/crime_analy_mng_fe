@@ -19,8 +19,8 @@ const Notification = () => {
   }
   return (
     <div className="text-[17px]  flex-col flex gap-3 font-mono ">
-      {notifications?.map((notification: any) => (
-        <div className="flx-row justify-between gap-5 rounded-md text-md px-5 py-3 leading-5  border">
+      {notifications?.map((notification: any,id:any) => (
+        <div className="flx-row justify-between gap-5 rounded-md text-md px-5 py-3 leading-5  border" key={id}>
           <p className="">
             {notification.message}
           </p>

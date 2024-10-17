@@ -24,8 +24,8 @@ const Alert = () => {
   };
   return (
     <div className="text-[17px]  flex-col flex gap-3 font-mono">
-      {alerts?.map((alert) => (
-        <div className="flx-row justify-between  rounded-md text-md px-5 py-3 gap-3 leading-5 border">
+      {alerts?.map((alert,id) => (
+        <div className="flx-row justify-between  rounded-md text-md px-5 py-3 gap-3 leading-5 border" key={id}>
           <div className="flx-row gap-2 w-1/4">
             <p>Lat: {alert?.latitude}</p>
             <p>Long: {alert?.longitude}</p>
