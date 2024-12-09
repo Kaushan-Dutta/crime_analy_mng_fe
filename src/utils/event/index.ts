@@ -3,6 +3,7 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { toast } from 'react-hot-toast';
 import { useEventApi } from '@/api/event';
 import { useSearchParams, usePathname } from 'next/navigation';
+import { EventType } from '@/components/sections/Event';
 
 export const useEvent = () => {
 
@@ -10,7 +11,7 @@ export const useEvent = () => {
 
     const { Event } = useEventApi();
 
-    const [event, setEvent] = useState<any>();
+    const [event, setEvent] = useState<EventType | null>();
 
     const getEvent = useCallback(async (eventId: string) => {
         try {

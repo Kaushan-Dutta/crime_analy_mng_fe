@@ -14,16 +14,14 @@ import CopyAllOutlinedIcon from "@mui/icons-material/CopyAllOutlined";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import { useAgencyUtils } from "@/utils/admin/agencyUtils";
-
+import { LocationType } from "./Event";
 export type AgencyType = {
   id: string;
   name?: string;
-  pincode?: string;
   document?: string;
   status: string;
   phone?: string;
-  latitude?: string;
-  longitude?: string;
+  location: LocationType;
 };
 
 type AgencyApplicationProps = {
@@ -79,8 +77,7 @@ const AgencyApplication: React.FC<AgencyApplicationProps> = ({ agencies }) => {
               </IconButton>
             </p>
             <p className="w-1/5">
-              LAT: {agency?.latitude}
-              {"     "}LONG: {agency?.longitude}
+              {agency?.location?.state}
             </p>
 
             <Link

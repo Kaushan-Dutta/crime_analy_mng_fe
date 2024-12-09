@@ -10,9 +10,7 @@ import {
 } from "@mui/material";
 import { useGlobalUtils } from "@/config/filter";
 
-type FilterProps = {
-  props: ("By Date" | "By Status" | "By Time")[];
-};
+
 const Filter = ({ props }: FilterProps) => {
   const { filter } = useGlobalUtils();
   return (

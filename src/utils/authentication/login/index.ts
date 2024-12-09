@@ -4,18 +4,8 @@ import { toast } from 'react-hot-toast';
 import { useAuthentication } from '@/api/authentication';
 import { useRouter } from 'next/navigation';
 
-type UseLoginReturnType = {
-  loginForm: {
-    label: string;
-    type: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  }[];
-  disabled: boolean;
-  handleLogin: (e: React.MouseEvent<HTMLElement>) => void;
-};
 
-export const useLogin = (): UseLoginReturnType => {
+export const useLogin = () => {
   const router = useRouter();
 
   const [email, setEmail] = useState('');

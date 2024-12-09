@@ -13,7 +13,9 @@ export const useCaseUtils = () => {
     const [cases, setCases] = useState([]);
     const [allCases, setAllCases] = useState([]);
 
-    const { GetAgencyCases, UpdateCaseStatus, GetAllCases } = useAgencyApis();
+    const [requestMessage,setRequestMessage]=useState<string>('');
+
+    const { GetAgencyCases, UpdateCaseStatus, GetAllCases, RequestCase} = useAgencyApis();
 
     const fetchCases = useCallback(async () => {
         try {
@@ -66,9 +68,26 @@ export const useCaseUtils = () => {
         }
 
     }
+
+    const sendRequest=useCallback(async(caseId:string)=>{
+        try{
+            console.log("Request Message",requestMessage);
+            const res=await RequestCase(caseId,requestMessage);
+            console.log("Response is ",res);
+            toast.success('Request sent successfully');
+        }
+        catch(err:any){
+            console.log("Error is ",err.message);
+            toast.error('Error sending request');
+        }
+    },[requestMessage])
+
     return {
         cases,
         handleUpdateCaseStatus,
-        allCases
+        allCases,
+        sendRequest,
+        setRequestMessage,     
+        requestMessage
     };
 };

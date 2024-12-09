@@ -1,22 +1,49 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.container-extralarge{
+.container-extralarge {
     @apply md:px-[16rem] px-[1rem] py-[1rem] md:text-base text-sm
 }
-.container-large{
+
+.container-large {
     @apply md:px-[12rem] px-[1rem] py-[1rem] md:text-base text-sm
 }
-.container-medium{
+
+.container-medium {
     @apply md:px-[7rem] px-[1rem] py-[1rem] md:text-base text-sm
 }
-.container-small{
-    @apply md:px-[2rem] px-[1rem]  md:text-base text-sm
+
+.container-small {
+    @apply md:px-[2rem] px-[1rem] md:text-base text-sm
 }
-.flx-row{
+
+.flx-row {
     @apply flex flex-row items-center
+}
+
+input {
+    outline: none;
+}
+
+.no-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+.search-list {
+    @apply p-2 text-center hover:bg-background
+}
+.scroll::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 50px;
+    @apply mr-5
+  }
+.scroll::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    @apply mr-5 bg-gray-300
 }

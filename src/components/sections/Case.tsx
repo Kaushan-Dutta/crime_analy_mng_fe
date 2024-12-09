@@ -17,16 +17,6 @@ import MenuList from "@mui/material/MenuList";
 import PendingIcon from "@mui/icons-material/Pending";
 import { useCaseUtils } from "@/utils/agency/caseUtils";
 
-type CaseType = {
-  id: string;
-  name: string;
-  status: string;
-  createdAt: string;
-  type: string;
-};
-interface CaseProps {
-  cases: CaseType[];
-}
 
 const Case: React.FC<CaseProps> = ({ cases }) => {
   const { account } = useAuth();

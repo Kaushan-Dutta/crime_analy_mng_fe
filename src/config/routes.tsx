@@ -7,6 +7,7 @@ import PolicyIcon from "@mui/icons-material/Policy";
 import EventIcon from "@mui/icons-material/Event";
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import AlarmAddIcon from '@mui/icons-material/AlarmAdd';
+import IosShareIcon from '@mui/icons-material/IosShare';
 
 export const SideBarLinks=[
     {
@@ -43,6 +44,12 @@ export const SideBarLinks=[
         title:"Cases",
         icon:<CasesIcon className="text-xl text-ascent"/>,
         link:'cases',
+        role:['agency']
+    },
+    {
+        title:"Req Cases",
+        icon:<IosShareIcon className="text-xl text-ascent"/>,
+        link:'req-cases',
         role:['agency']
     },
     {

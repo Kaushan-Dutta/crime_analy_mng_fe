@@ -12,14 +12,17 @@ import { useCaseUtils } from "@/utils/agency/caseUtils";
 import { useAuth } from "@/context/AuthContext";
 
 const FindCase = () => {
+
   const { account } = useAuth();
-  const { allCases } = useCaseUtils();
+  const { allCases,sendRequest,setRequestMessage,requestMessage } = useCaseUtils();
   const [openRequest, setOpenRequest] = useState<string | null>(null);
+
   console.log("All Cases", allCases);
   const dateFormat = (timestamp: string) => {
     const date = new Date(parseInt(timestamp));
     return date.toLocaleDateString();
   };
+
   return (
     <div className="text-[17px]  flex-col flex gap-3 font-mono">
       {allCases?.map((_case: any,id:any) => (
@@ -64,11 +67,16 @@ const FindCase = () => {
                 fullWidth
                 margin="normal"
                 label="Description"
+                value={requestMessage}
+                onChange={(e) => setRequestMessage(e.target.value)}
               />
               <Button
                 variant="contained"
                 color="success"
                 sx={{ width: "160px" }}
+                onClick={() => {
+                  sendRequest(_case.id);
+                }}
               >
                 Send Req
               </Button>

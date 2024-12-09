@@ -22,7 +22,7 @@ export const useEventApi = () => {
         const { data: { getEvent: res } } = await getEvent({
             id: eventId
         })
-        console.log(res);
+        console.log("The events are",res);
         return res.data
     }
     

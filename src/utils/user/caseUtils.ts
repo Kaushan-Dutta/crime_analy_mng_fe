@@ -4,11 +4,6 @@ import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useUserApis } from '@/api/user';
 
-export type EvidenceType = {
-    url?: string,
-    file?: string,
-    description: string
-}
 
 export const useCaseUtils = () => {
     const router = useRouter();
@@ -21,18 +16,18 @@ export const useCaseUtils = () => {
     const [evidence, setEvidence] = useState<EvidenceType[]>([]);
 
     const memoizedCases = useMemo(() => cases, [cases]);
-    console.log("Memoized Cases", memoizedCases);
+
     const handleCaseRegister = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
         console.log(caseType, name, phone, pincode, evidence);
         try {
             const updateStatus = await CaseRegister(caseType, name, phone, pincode, evidence);
             console.log(updateStatus);
-            toast.success('Agency status updated');
+            toast.success('Case successfully registered');
         }
         catch (error: any) {
             console.log("Error is ", error.message);
-            toast.error('Error updating agency status');
+            toast.error('Error in adding case');
         }
     }, [caseType, name, phone, pincode, evidence]);
 

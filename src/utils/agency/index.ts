@@ -5,28 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useAgencyApis } from '@/api/agency';
 import { useAlert } from '../alerts';
 
-type UseAgencyType = {
-    alerts: {
-        id: string,
-        latitude: string,
-        longitude: string,
-        status: string,
-        createdAt: string,
-    }[];
-    agencyForm: {
-        id: number,
-        formList: {
-            label: string;
-            value: string;
-            type: string;
-            onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-        }[]
-    }[],
-    handleAgencyRegister: (e: React.MouseEvent<HTMLElement>) => void,
-    disabled: boolean
-};
 
-export const useAgency = (): UseAgencyType => {
+export const useAgency = () => {
     const router = useRouter();
     const { location } = useAlert();
 

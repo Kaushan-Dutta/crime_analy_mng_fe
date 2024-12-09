@@ -5,18 +5,8 @@ import { useAuthentication } from '@/api/authentication';
 import { useRouter } from 'next/navigation';
 import { Router } from 'next/router';
 
-type UseSignupReturnType = {
-  signupForm: {
-    label: string;
-    type: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  }[];
-  disabled: boolean;
-  handleSignup: (e: React.MouseEvent<HTMLElement>) => void;
-};
 
-export const useSignup = (): UseSignupReturnType => {
+export const useSignup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);

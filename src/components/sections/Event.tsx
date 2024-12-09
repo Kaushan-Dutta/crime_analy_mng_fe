@@ -7,18 +7,30 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import Image from "next/image";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-
+import { formatDateTime } from "@/utils/handlers/dateHandler";
 // Extend Day.js with the relativeTime plugin
-dayjs.extend(relativeTime);
+// dayjs.extend(relativeTime);
 
+export type LocationType={
+  id:string,
+  longitude:number,
+  latitude: number,
+  pincode: string,
+  state: string,
+  district:string,
+  country: string
+}
 export type EventType = {
   id: string;
   name: string;
   description: string;
   date: string;
-  location: string;
+  location:LocationType ;
+  startTime: string;
+  endTime: string;
+  venue:string
 };
 
 type EventProps = {
@@ -26,9 +38,9 @@ type EventProps = {
 };
 
 const Event: React.FC<EventProps> = ({ events }) => {
-  const convertDate = (date: string) => {
-      return dayjs(date).format('YYYY-MM-DD HH:mm:ss');
-  }
+  // const convertDate = (date: string) => {
+  //     return dayjs(date).format('YYYY-MM-DD HH:mm:ss');
+  // }
 
   return (
     <div className="text-[17px]  flex-col flex gap-3 font-mono">
@@ -46,10 +58,10 @@ const Event: React.FC<EventProps> = ({ events }) => {
               />
               <div className="flx-row gap-3  justify-center">
                 <p>{item?.name}</p>
-                <p className="text-sm">( {item?.location} )</p>
+                <p className="text-sm">( {item?.location?.state} )</p>
               </div>
             </div>
-            <p>{convertDate(item?.date)}</p>
+            <p>{formatDateTime(item?.date)}</p>
 
             <Link href={`/event/${item?.id}`} className=" flx-row gap-2  justify-center">
               <span>

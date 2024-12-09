@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Analytics",
@@ -14,9 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        {heading}
-        {children}
+      <body className="font-rale flex flex-col">
+        <div className="fixed w-full z-20 max-w-screen-2xl p-3">
+          <Navbar />
+        </div>
+        <div className="container-large ">
+          <div className="flex-1  gap-5 h-fit mt-24">{children}</div>
+        </div>
       </body>
     </html>
   );

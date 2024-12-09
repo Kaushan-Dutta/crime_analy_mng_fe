@@ -53,7 +53,7 @@ export const useAgencyApis = () => {
     const [register] = useMutation(REGISTER);
     const { refetch: getCases } = useQuery(GET_CASES, { skip: true });
     const { refetch: getAllCases } = useQuery(GET_ALL_CASES, { skip: true });
-
+    
 
     const [updateCaseStatus] = useMutation(UPDATE_CASE_STATUS);
 
@@ -98,11 +98,16 @@ export const useAgencyApis = () => {
         })
         return res.data
     }
+
+    const RequestCase=async(caseId:string,requestMessage:string)=>{
+        console.log("Case Id is ",caseId,"Request Message is ",requestMessage);
+    }
     return {
         alerts: alerts?.getAlerts?.data,
         AgencyRegister,
         GetAgencyCases,
         GetAllCases,
-        UpdateCaseStatus
+        UpdateCaseStatus,
+        RequestCase
     };
 };

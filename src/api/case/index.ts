@@ -19,13 +19,7 @@ const CASE_REGISTER = gql`
         }
     }
 `
-type EvidenceInput = {
-    id?: string
-    url?: string
-    file?: string
-    description?: string
-    caseId?: string
-}
+
 export const useCaseApi = () => {
 
     const { refetch: getCase } = useQuery(GET_CASE,{skip:true});
